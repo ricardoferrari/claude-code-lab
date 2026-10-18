@@ -1,0 +1,39 @@
+<div class="task-list-container">
+  <h2>Tasks</h2>
+
+  <div *ngIf="loading" class="loading">
+    Loading tasks...
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading && tasks.length === 0" class="empty-state">
+    No tasks found. Create your first task to get started!
+  </div>
+
+  <div *ngIf="!loading && tasks.length > 0" class="task-list">
+    <div *ngFor="let task of tasks" class="task-item">
+      <div class="task-header">
+        <h3>{{ task.title }}</h3>
+        <span class="task-status" [ngClass]="getStatusClass(task.status)">
+          {{ task.status }}
+        </span>
+      </div>
+
+      <p class="task-description">{{ task.description }}</p>
+
+      <div class="task-metadata">
+        <span class="task-priority">Priority: {{ task.priority }}</span>
+        <span class="task-date">Created: {{ task.createdAt | date:'short' }}</span>
+      </div>
+
+      <div class="task-actions">
+        <button (click)="deleteTask(task.id)" class="btn-delete">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

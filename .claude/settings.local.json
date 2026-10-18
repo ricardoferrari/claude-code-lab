@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"D:\\\\\\\\HandsOn\\\\\\\\claude-code-lab\\\\\\\\hol-copilot-lab\" -type f -name \"*.md\")",
+      "Bash(ls *)",
+      "Bash(tree *)"
+    ]
+  }
+}
