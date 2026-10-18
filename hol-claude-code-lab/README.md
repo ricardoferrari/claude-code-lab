@@ -84,7 +84,17 @@ Before starting the lab, ensure you have:
 
 - **`Instructions/Labs/`** - Step-by-step lab guides with exercises
 - **`SampleApps/`** - Python and Angular applications to work with
+  - `python-data-processor/` - Backend data processing service
+  - `angular-task-app/` - Frontend task management application
+  - `angular-task-app/playwright-tests/` - Browser automation test examples
+- **`WorkflowExamples/`** - Production-ready workflow scripts for complex agent orchestration
+  - `code-review-workflow.js` - Multi-dimensional code review
+  - `feature-pipeline-workflow.js` - Complete feature development pipeline
+  - `security-audit-workflow.js` - Comprehensive security audit
 - **`AdditionalLearning/`** - Extra resources and advanced topics
+  - `Advanced-Agents-and-Workflows.md` - Advanced parallel agents and workflow patterns
+  - `playwright-mcp-guide.md` - Complete browser automation guide
+  - `Advanced-Topics.md` - Additional advanced topics
 - **`media/`** - Screenshots and images for the labs
 
 ## 🌟 What Makes Claude Code Different?

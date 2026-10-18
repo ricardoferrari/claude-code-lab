@@ -4,19 +4,34 @@ This document provides additional learning materials for advanced Claude Code us
 
 ## 🚀 Advanced Features
 
-### 1. Dynamic Workflows
+### 1. Advanced Agents and Workflows
 
-Learn to orchestrate multiple subagents with complex dependencies.
+Master parallel agent patterns and workflow orchestration for complex multi-agent systems.
 
 **Topics:**
-- Workflow scripts with agent coordination
-- Parallel vs sequential execution strategies
+- Advanced parallel agent patterns (fan-out/fan-in, pipeline, map-reduce, conditional, racing)
+- Workflow tool and script authoring
+- Complex agent coordination strategies
 - Error handling in multi-agent workflows
-- Result aggregation patterns
+- Real-world workflow examples (security audits, feature pipelines, code reviews)
 
-**Resources:**
+**Comprehensive Guide:**
+- **[Advanced Agents and Workflows Guide](Advanced-Agents-and-Workflows.md)** - Complete guide with patterns and examples
+
+**Ready-to-Run Examples:**
+- **[Workflow Examples Directory](../WorkflowExamples/)** - Production-ready workflow scripts:
+  - `code-review-workflow.js` - Multi-dimensional code review
+  - `feature-pipeline-workflow.js` - Complete feature development pipeline
+  - `security-audit-workflow.js` - OWASP Top 10 security audit
+
+**Official Resources:**
 - [Workflows Documentation](https://code.claude.com/docs/en/workflows)
 - [A Harness for Every Task](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code)
+
+**Quick Start:**
+```
+Run the code review workflow from WorkflowExamples/code-review-workflow.js
+```
 
 ### 2. Remote Control
 
@@ -32,7 +47,33 @@ Access Claude Code sessions from anywhere.
 - [Remote Control Guide](https://code.claude.com/docs/en/remote-control)
 - [Mobile App Usage](https://code.claude.com/docs/en/mobile)
 
-### 3. CI/CD Integration
+### 3. Browser Automation with Playwright MCP
+
+Automate UI testing and validation using real browsers.
+
+**Topics:**
+- Setting up Playwright MCP server
+- Automated browser testing
+- Visual regression testing
+- Performance measurement
+- Accessibility audits
+- Cross-browser testing
+- Responsive design validation
+
+**Resources:**
+- [Playwright MCP Guide](playwright-mcp-guide.md) - Comprehensive guide in this directory
+- [Playwright Documentation](https://playwright.dev/)
+- Lab 5, Step 7 - Hands-on Playwright integration
+
+**Example use cases:**
+- Validate UI implementations in real browsers
+- Test user interactions (forms, navigation, workflows)
+- Measure Core Web Vitals (FCP, LCP, TTI)
+- Check WCAG accessibility compliance
+- Test responsive design across viewports
+- Generate visual documentation with screenshots
+
+### 4. CI/CD Integration
 
 Automate code review and quality checks in your pipeline.
 
@@ -41,6 +82,7 @@ Automate code review and quality checks in your pipeline.
 - GitLab CI/CD workflows
 - Automated PR reviews
 - Security scanning in CI
+- Playwright tests in CI/CD
 
 **Resources:**
 - [GitHub Actions](https://code.claude.com/docs/en/github-actions)

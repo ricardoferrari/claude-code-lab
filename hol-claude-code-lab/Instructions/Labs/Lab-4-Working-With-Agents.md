@@ -442,12 +442,60 @@ By completing this lab, you now understand:
 
 6. **Scale matters** - Agents shine with large, complex projects
 
+## 🚀 Advanced: Workflow Tool (Optional)
+
+For complex orchestration with 10+ agents or conditional logic, Claude Code provides the **Workflow tool**.
+
+### When to Use Workflows
+
+**Use the Workflow tool when:**
+- You need 10+ agents with complex coordination
+- Conditional branching based on results
+- Want to save and reuse orchestration logic
+- Need advanced error recovery
+
+**Example workflow script:**
+```javascript
+export const meta = {
+  name: 'code-review',
+  description: 'Multi-dimensional code review',
+  phases: [
+    { title: 'Review' },
+    { title: 'Report' }
+  ]
+};
+
+const reviews = await parallel([
+  () => agent('Security review', { phase: 'Review' }),
+  () => agent('Performance review', { phase: 'Review' }),
+  () => agent('Quality review', { phase: 'Review' })
+]);
+
+const report = await agent(
+  `Aggregate reviews: ${JSON.stringify(reviews)}`,
+  { phase: 'Report' }
+);
+
+return { reviews, report };
+```
+
+**Try a pre-built workflow:**
+```
+Run the code review workflow from WorkflowExamples/code-review-workflow.js
+```
+
+**Learn more:**
+- See `WorkflowExamples/` directory for ready-to-run workflows
+- Read `AdditionalLearning/Advanced-Agents-and-Workflows.md` for patterns and best practices
+
 ## 📚 Additional Resources
 
 - **Agent Documentation**: [Sub-agents Guide](https://code.claude.com/docs/en/sub-agents)
 - **Agent Types**: [Available Agents](https://code.claude.com/docs/en/sub-agents#agent-types)
 - **Workflows**: [Dynamic Workflows](https://code.claude.com/docs/en/workflows)
 - **Best Practices**: [When to Use Agents](https://code.claude.com/docs/en/best-practices#delegation)
+- **Advanced Guide**: [Advanced Agents and Workflows](../../AdditionalLearning/Advanced-Agents-and-Workflows.md)
+- **Workflow Examples**: [WorkflowExamples/](../../WorkflowExamples/)
 
 ## 🔜 Next Steps
 

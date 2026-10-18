@@ -332,7 +332,264 @@ Search for solutions to this error: [paste error]
 Then fix the code based on what you find.
 ```
 
-## 🎯 Step 7: Multiple MCP Servers Together
+## 🎭 Step 7: Playwright MCP for Browser Automation
+
+Test and validate web applications using real browser automation.
+
+### What is Playwright MCP?
+
+**Playwright MCP** gives Claude the ability to control browsers and test web applications. This is incredibly powerful for:
+
+- **Testing UI implementations** in real browsers
+- **Validating user interactions** (clicks, forms, navigation)
+- **Taking screenshots** for documentation or bug reports
+- **Running end-to-end tests** automatically
+- **Checking responsive design** across different viewports
+- **Measuring performance** (load times, Core Web Vitals)
+- **Accessibility audits** for WCAG compliance
+
+### Setup Playwright MCP Server
+
+First, install Playwright:
+
+```bash
+npm install -D @playwright/test
+npx playwright install chromium
+```
+
+**Prompt to try:**
+```
+Help me set up the Playwright MCP server for browser automation testing.
+I want to be able to test web applications in real browsers.
+```
+
+Configuration in `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-playwright"],
+      "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "0"
+      }
+    }
+  }
+}
+```
+
+**Restart Claude** to load the configuration:
+
+```bash
+exit
+claude
+```
+
+### Example 1: Test the Angular Task App
+
+Let's test the Angular application from the lab!
+
+First, start the app (in a separate terminal):
+
+```bash
+cd hol-claude-code-lab/SampleApps/angular-task-app
+npm install
+npm start
+```
+
+**Prompt to try:**
+```
+Using Playwright MCP, test the Angular task app at http://localhost:4200:
+
+1. Navigate to the home page
+2. Verify the page loads successfully
+3. Check the page title
+4. Take a screenshot
+5. Report the results
+```
+
+**What Claude will do:**
+- Launch a Chromium browser
+- Navigate to your app
+- Verify it loads without errors
+- Capture a screenshot
+- Report success/failure with details
+
+### Example 2: Test Task Creation Flow
+
+**Prompt to try:**
+```
+Using Playwright MCP, validate the task creation feature:
+
+1. Navigate to http://localhost:4200
+2. Click the "New Task" or "Add Task" button
+3. Fill in the task form:
+   - Task Name: "Automated Test Task"
+   - Description: "Created by Playwright automation"
+4. Submit the form
+5. Verify the new task appears in the list
+6. Take before and after screenshots
+7. Report the results
+```
+
+**What happens:**
+- Browser opens and navigates to app
+- Finds and clicks the "New Task" button
+- Fills form fields automatically
+- Submits the form
+- Validates the task appears
+- Captures visual proof
+- Reports success or any issues found
+
+### Example 3: Responsive Design Testing
+
+**Prompt to try:**
+```
+Using Playwright MCP, test responsive design:
+
+1. Test the Angular app at these viewport sizes:
+   - Mobile: 375x667 (iPhone)
+   - Tablet: 768x1024 (iPad)  
+   - Desktop: 1920x1080
+2. For each size:
+   - Take a screenshot
+   - Verify no horizontal scroll
+   - Check navigation is accessible
+3. Generate a responsive design report
+```
+
+### Example 4: Performance Testing
+
+**Prompt to try:**
+```
+Using Playwright MCP, measure performance metrics for the task app:
+
+1. Navigate to http://localhost:4200
+2. Measure:
+   - First Contentful Paint (FCP)
+   - Load complete time
+   - Number of resources loaded
+3. Compare against Web Vitals thresholds
+4. Report performance status (Good/Needs Improvement/Poor)
+```
+
+**Performance thresholds:**
+- **FCP Good:** < 1.8s
+- **FCP Needs Improvement:** 1.8s - 3.0s
+- **FCP Poor:** > 3.0s
+
+### Example 5: Form Validation Testing
+
+**Prompt to try:**
+```
+Using Playwright MCP, test form validation:
+
+1. Try submitting an empty task form
+2. Verify error messages appear
+3. Fill in only the name field
+4. Check if partial validation works
+5. Fill in all required fields correctly
+6. Verify successful submission
+7. Report all validation rules tested
+```
+
+### Advanced: Visual Regression Testing
+
+**Prompt to try:**
+```
+Using Playwright MCP, set up visual regression testing:
+
+1. Navigate to the dashboard
+2. Wait for all content to fully load
+3. Take a baseline screenshot
+4. Save it as "dashboard-baseline.png"
+5. In the future, compare new screenshots against this baseline
+6. Report any visual differences
+```
+
+### Real-World Scenarios
+
+**Scenario 1: Bug Investigation**
+```
+There's a bug where tasks don't submit on mobile. Using Playwright MCP:
+
+1. Set viewport to mobile size (375x667)
+2. Try to create a new task
+3. Take screenshots at each step
+4. Check console for errors
+5. Inspect the submit button state
+6. Report what's preventing submission
+```
+
+**Scenario 2: Pre-Deployment Validation**
+```
+Before deploying, validate the Angular app with Playwright MCP:
+
+1. Test all main user flows (task CRUD operations)
+2. Check responsive design on 3 viewport sizes
+3. Measure performance metrics
+4. Verify no console errors
+5. Take screenshots for documentation
+6. Generate a go/no-go deployment report
+```
+
+**Scenario 3: Cross-Browser Testing**
+```
+Using Playwright MCP, test the app in multiple browsers:
+
+1. Test in Chromium
+2. Test in Firefox
+3. Test in WebKit (Safari)
+4. For each browser, run the main user flows
+5. Report any browser-specific issues
+```
+
+### Best Practices
+
+**1. Use stable selectors:**
+```javascript
+// ❌ Fragile
+await page.click('div > div > button:nth-child(3)');
+
+// ✅ Robust
+await page.click('button[aria-label="Create New Task"]');
+await page.click('text=Submit');
+```
+
+**2. Wait properly:**
+```javascript
+// ❌ Arbitrary timeout
+await page.waitForTimeout(3000);
+
+// ✅ Wait for specific conditions
+await page.waitForSelector('.task-list', { state: 'visible' });
+await page.waitForLoadState('networkidle');
+```
+
+**3. Always take screenshots on failure:**
+```javascript
+try {
+  await page.click('button:has-text("Submit")');
+} catch (error) {
+  await page.screenshot({ path: 'error-state.png' });
+  throw error;
+}
+```
+
+### Why Playwright MCP is Powerful
+
+| Without Playwright MCP | With Playwright MCP |
+|------------------------|---------------------|
+| Write tests manually | Claude writes and runs tests |
+| Can't see visual issues | Test in real browsers |
+| Separate testing workflow | Integrated in development |
+| Manual screenshot comparison | Automated visual testing |
+| Debug from code only | See what users actually see |
+
+**Key insight:** Playwright MCP turns Claude into a QA engineer that can test your app in real browsers, just by asking!
+
+## 🎯 Step 8: Multiple MCP Servers Together
 
 The real power comes from combining MCP servers.
 
@@ -361,7 +618,40 @@ Provide a summary when complete.
 
 **This is where MCP shines!** 🌟
 
-## 🛠️ Step 8: Custom MCP Server
+### Advanced Multi-MCP Workflow with Playwright
+
+**Prompt to try:**
+```
+Complete end-to-end validation workflow:
+
+1. Using SQLite MCP: Query database for recent tasks
+2. Using Playwright MCP: 
+   - Navigate to the task app
+   - Verify those tasks display correctly in the UI
+   - Test creating a new task
+3. Using SQLite MCP: Verify the new task was saved to database
+4. Using Playwright MCP: Take screenshots of the UI state
+5. Using GitHub MCP: Create an issue with test results
+6. Using Slack MCP: Post summary to #qa channel
+
+Report the complete workflow results.
+```
+
+**Another powerful example:**
+```
+Automated deployment validation:
+
+1. Using Playwright MCP: Run full UI test suite
+2. If all tests pass:
+   - Using GitHub MCP: Create a PR with test screenshots
+   - Using Slack MCP: Notify #releases channel
+3. If any tests fail:
+   - Using Playwright MCP: Capture detailed failure screenshots
+   - Using GitHub MCP: Create a bug issue with screenshots
+   - Using Slack MCP: Alert #dev-team with failure details
+```
+
+## 🛠️ Step 9: Custom MCP Server
 
 Build your own MCP server for custom integrations.
 
@@ -486,18 +776,35 @@ Set up this complete MCP integration stack:
 
 1. Filesystem MCP: Access to ~/projects and ~/documents
 2. SQLite MCP: Analytics database connection
-3. GitHub MCP: Repository management
-4. Slack MCP (if available): Team notifications
+3. Playwright MCP: Browser automation for testing
+4. GitHub MCP: Repository management
+5. Slack MCP (if available): Team notifications
 
 Then demonstrate by:
 - Reading project requirements from ~/documents/requirements.txt
-- Implementing a new feature based on those requirements
-- Writing tests
-- Logging results to the analytics database
-- Creating a GitHub PR
-- Posting a summary to Slack
+- Implementing a new feature in the Angular task app
+- Using Playwright MCP to test the feature in a browser
+- Logging test results to the analytics database
+- If tests pass, creating a GitHub PR with screenshots
+- Posting a summary to Slack with test status
 
 Walk me through the entire process.
+```
+
+**Alternative exercise - QA Automation:**
+```
+Build a complete QA automation workflow:
+
+1. Set up Playwright MCP for browser testing
+2. Set up SQLite MCP for test results storage
+3. Create a workflow that:
+   - Tests the Angular task app (all main features)
+   - Takes screenshots of each test step
+   - Records pass/fail results in the database
+   - If failures occur, saves detailed error information
+   - Generates a test report with visual evidence
+
+Then run the workflow and show me the results.
 ```
 
 ## 🔍 Troubleshooting MCP
@@ -537,7 +844,9 @@ By completing this lab, you now understand:
 
 ✅ **MCP configuration** - How to set up servers
 
-✅ **Common integrations** - Filesystem, databases, GitHub, Slack
+✅ **Common integrations** - Filesystem, databases, GitHub, Slack, web search
+
+✅ **Browser automation** - Testing web apps with Playwright MCP
 
 ✅ **Combined workflows** - Using multiple MCPs together
 

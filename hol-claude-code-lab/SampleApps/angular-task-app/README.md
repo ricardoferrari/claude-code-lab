@@ -106,6 +106,24 @@ npm run e2e
 ng e2e
 ```
 
+### Browser Automation Tests (Playwright)
+
+This project includes Playwright browser automation tests using MCP integration:
+
+```bash
+# See playwright-tests/ directory for:
+# - Automated test suite
+# - Playwright MCP quickstart guide
+# - Test examples and prompts
+```
+
+**Using Claude Code with Playwright MCP:**
+```
+Using Playwright MCP, test the Angular task app and report results.
+```
+
+See `playwright-tests/README.md` for complete testing documentation.
+
 ### Linting
 
 ```bash
