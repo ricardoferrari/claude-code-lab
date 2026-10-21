@@ -1,4 +1,4 @@
-# Lab 7 - Parallel Agents and Multi-Sessions
+# Lab 8 - Parallel Agents and Multi-Sessions
 
 #### Duration: 40 minutes
 
@@ -662,17 +662,15 @@ List all my sessions across all machines. Ask the session on my laptop to run th
 - **Parallel Agents**: [Run Agents in Parallel](https://code.claude.com/docs/en/agents)
 - **Worktrees**: [Isolated Checkouts](https://code.claude.com/docs/en/worktrees)
 - **Agent Teams**: [Experimental](https://code.claude.com/docs/en/agent-teams)
-- **Previous Lab**: [Lab 4 - Working with Agents](Lab-4-Working-With-Agents.md)
+- **Previous Lab**: [Lab 5 - Working with Agents](Lab-5-Working-With-Agents.md)
 
 ## 🔜 Next Steps
 
-This completes the core labs! For advanced topics, explore:
+This completes all labs! For advanced topics, explore:
 
 - **Advanced Agents and Workflows**: [Guide](../../AdditionalLearning/Advanced-Agents-and-Workflows.md)
 - **Workflow Examples**: [Ready-to-run workflows](../../WorkflowExamples/)
-- **MCP Integration**: [Lab 5](Lab-5-MCP-Integration.md)
-- **Customization**: [Lab 6](Lab-6-Customization.md)
 
 ---
 
-#### Congratulations! You've completed Lab 7 and mastered multi-session coordination in Claude Code! 🎉
+#### 🎉 Congratulations! You've completed Lab 8 and mastered the entire Claude Code Hands-On Lab series! Happy coding with Claude!

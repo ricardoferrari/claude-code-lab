@@ -1,4 +1,4 @@
-# Lab 4 - Working with Agents
+# Lab 5 - Working with Agents
 
 #### Duration: 30 minutes
 
@@ -499,7 +499,7 @@ Run the code review workflow from WorkflowExamples/code-review-workflow.js
 
 ## 🔜 Next Steps
 
-In [Lab 5 - MCP Integration](Lab-5-MCP-Integration.md), you'll learn:
+In [Lab 6 - MCP Integration](Lab-6-MCP-Integration.md), you'll learn:
 - What Model Context Protocol (MCP) is
 - How to connect external tools and data sources
 - Setting up MCP servers
@@ -507,4 +507,4 @@ In [Lab 5 - MCP Integration](Lab-5-MCP-Integration.md), you'll learn:
 
 ---
 
-#### You have successfully completed Lab 4! Click [Next Lab →](Lab-5-MCP-Integration.md) to continue.
+#### You have successfully completed Lab 5! Click [Next Lab →](Lab-6-MCP-Integration.md) to continue.

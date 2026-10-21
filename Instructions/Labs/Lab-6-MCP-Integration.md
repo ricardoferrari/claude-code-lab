@@ -1,4 +1,4 @@
-# Lab 5 - MCP Integration
+# Lab 6 - MCP Integration
 
 #### Duration: 30 minutes
 
@@ -877,12 +877,12 @@ By completing this lab, you now understand:
 
 ## 🔜 Next Steps
 
-In [Lab 6 - Customizing Claude Code](Lab-6-Customization.md), you'll learn:
-- CLAUDE.md files for project instructions
+In [Lab 7 - Customizing Claude Code](Lab-7-Customization.md), you'll learn:
 - Creating custom skills
 - Setting up automation hooks
 - Memory system for persistent learning
+- Configuring permissions and preferences
 
 ---
 
-#### You have successfully completed Lab 5! Click [Next Lab →](Lab-6-Customization.md) to continue.
+#### You have successfully completed Lab 6! Click [Next Lab →](Lab-7-Customization.md) to continue.
