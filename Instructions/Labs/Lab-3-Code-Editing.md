@@ -22,6 +22,172 @@ Your manager at DataFlow Analytics has identified several areas needing attentio
 
 Your task is to use Claude Code to efficiently address these issues while maintaining code quality.
 
+## 🏗️ Understanding Claude Code Architecture
+
+Before diving into code editing, let's understand how Claude Code works under the hood.
+
+### Claude Code Execution Flow
+
+```mermaid
+graph TD
+    User[👤 User] -->|Prompt| CLI[Claude Code CLI/Desktop/Web]
+    CLI -->|Request| LLM[🧠 Claude LLM<br/>Sonnet/Opus/Haiku]
+    
+    LLM -->|Tool Call| Tools[🛠️ Built-in Tools]
+    LLM -->|Spawn| Agents[🤖 Subagents]
+    LLM -->|Connect| MCP[🔌 MCP Servers]
+    
+    Tools --> Read[📖 Read Files]
+    Tools --> Edit[✏️ Edit Files]
+    Tools --> Write[📝 Write Files]
+    Tools --> Bash[💻 Execute Commands]
+    Tools --> Grep[🔍 Search Code]
+    Tools --> Glob[📁 Find Files]
+    
+    Agents -->|Fork| Agent1[Agent 1<br/>Own LLM Instance]
+    Agents -->|Parallel| Agent2[Agent 2<br/>Own LLM Instance]
+    Agents -->|Sequential| Agent3[Agent 3<br/>Own LLM Instance]
+    
+    Agent1 -->|Results| LLM
+    Agent2 -->|Results| LLM
+    Agent3 -->|Results| LLM
+    
+    MCP -->|Tools| MCPServer1[GitHub MCP]
+    MCP -->|Tools| MCPServer2[Slack MCP]
+    MCP -->|Tools| MCPServer3[Database MCP]
+    MCP -->|Tools| MCPServer4[Custom MCP]
+    
+    MCPServer1 -->|Data/Actions| LLM
+    MCPServer2 -->|Data/Actions| LLM
+    MCPServer3 -->|Data/Actions| LLM
+    MCPServer4 -->|Data/Actions| LLM
+    
+    Read -->|File Content| LLM
+    Edit -->|Changes Applied| LLM
+    Write -->|File Created| LLM
+    Bash -->|Command Output| LLM
+    Grep -->|Search Results| LLM
+    Glob -->|File Paths| LLM
+    
+    LLM -->|Response| CLI
+    CLI -->|Display| User
+    
+    Context[💾 Context Window<br/>CLAUDE.md<br/>Conversation History<br/>File Contents]
+    Context -.->|Informs| LLM
+    
+    Sessions[📡 Cross-Session Messaging]
+    Agent1 -.->|SendMessage| Sessions
+    Sessions -.->|Coordinate| Agent2
+    
+    style LLM fill:#4A90E2,stroke:#2E5C8A,stroke-width:3px,color:#fff
+    style Tools fill:#50C878,stroke:#2E7D4E,stroke-width:2px
+    style Agents fill:#9B59B6,stroke:#6C3483,stroke-width:2px
+    style MCP fill:#F39C12,stroke:#B8730A,stroke-width:2px
+    style Context fill:#E74C3C,stroke:#A93226,stroke-width:2px
+    style Sessions fill:#1ABC9C,stroke:#117A65,stroke-width:2px
+```
+
+### Key Components Explained
+
+**1. Claude LLM (Language Model)**
+- The brain of the operation
+- Processes your requests and decides which tools to use
+- Can be Sonnet (balanced), Opus (most capable), or Haiku (fastest)
+- Maintains conversation context and project understanding
+
+**2. Built-in Tools**
+- **Read**: Examines file contents
+- **Edit**: Makes surgical changes to existing files
+- **Write**: Creates new files or rewrites existing ones
+- **Bash**: Executes shell commands (run tests, build, etc.)
+- **Grep**: Searches for code patterns across files
+- **Glob**: Finds files matching patterns
+
+**3. Subagents**
+- Independent Claude instances you can spawn
+- Each has its own LLM and tool access
+- Work in parallel or sequentially
+- Report results back to the main session
+- Can coordinate via cross-session messaging
+
+**4. MCP (Model Context Protocol) Servers**
+- External integrations that extend Claude's capabilities
+- GitHub: Access repos, PRs, issues
+- Slack: Read/send messages, channel history
+- Databases: Query and modify data
+- Custom: Build your own integrations
+
+**5. Context Window**
+- Claude's working memory
+- Includes conversation history, file contents, CLAUDE.md
+- Managed via /compact, /clear, /context commands
+- Automatically loads project instructions from CLAUDE.md
+
+**6. Cross-Session Communication**
+- Multiple Claude sessions can coordinate
+- SendMessage tool enables agent-to-agent communication
+- Useful for parallel work across different parts of a project
+
+### Execution Flow Example
+
+```
+1. You: "Add error handling to the data processor"
+   ↓
+2. Claude LLM analyzes request
+   ↓
+3. Uses Read tool to examine data_processor.py
+   ↓
+4. Identifies functions needing error handling
+   ↓
+5. Uses Edit tool to add try-catch blocks
+   ↓
+6. Uses Bash tool to run tests
+   ↓
+7. Reviews test output
+   ↓
+8. Reports back: "Added error handling to 3 functions, all tests pass"
+```
+
+### Multi-Agent Example
+
+```
+1. You: "Review code for bugs, performance, and security"
+   ↓
+2. Claude spawns 3 parallel agents:
+   Agent 1: Security review (Grep for SQL injection, XSS)
+   Agent 2: Performance review (Grep for inefficient patterns)
+   Agent 3: Bug review (Read code, analyze logic)
+   ↓
+3. Each agent runs independently with its own LLM
+   ↓
+4. Agents report findings back
+   ↓
+5. Main Claude aggregates results
+   ↓
+6. Reports: "Security: 2 issues, Performance: 4 issues, Bugs: 1 issue"
+```
+
+### MCP Integration Example
+
+```
+1. You: "Check if there are any related GitHub issues"
+   ↓
+2. Claude connects to GitHub MCP server
+   ↓
+3. MCP server queries GitHub API
+   ↓
+4. Returns issue list to Claude
+   ↓
+5. Claude: "Found 3 related issues: #123, #124, #125"
+```
+
+This architecture enables Claude Code to:
+- 🚀 Work efficiently across multiple files and tasks
+- 🔄 Coordinate parallel work via agents
+- 🔌 Integrate with external systems via MCP
+- 💾 Maintain context across long sessions
+- 🛡️ Execute safely with permission controls
+
 ## 🔍 Step 1: Understanding Edit vs Write
 
 Before we start, let's understand when to use each tool:
@@ -486,12 +652,12 @@ By completing this lab, you now understand:
 
 ## 🔜 Next Steps
 
-In [Lab 4 - Working with Agents](Lab-4-Working-With-Agents.md), you'll learn:
-- How to spawn and coordinate multiple subagents
-- Parallel execution for complex tasks
-- Agent communication and result aggregation
-- When to use agents vs. doing it yourself
+In [Lab 4 - Context Windows and Session Management](Lab-4-Context-Windows-and-Session-Management.md), you'll learn:
+- Understanding and managing context windows
+- Initializing CLAUDE.md for project-specific instructions
+- Using slash commands: /clear, /compact, /context, /resume, and /handoff
+- Optimizing your workflow with context management strategies
 
 ---
 
-#### You have successfully completed Lab 3! Click [Next Lab →](Lab-4-Working-With-Agents.md) to continue.
+#### You have successfully completed Lab 3! Click [Next Lab →](Lab-4-Context-Windows-and-Session-Management.md) to continue.

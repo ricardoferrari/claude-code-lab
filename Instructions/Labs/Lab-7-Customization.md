@@ -1,4 +1,4 @@
-# Lab 6 - Customizing Claude Code
+# Lab 7 - Customizing Claude Code
 
 #### Duration: 30 minutes
 
@@ -616,7 +616,21 @@ Over these labs, you've learned:
 - ✅ Integrate external tools and services via MCP
 - ✅ Customize Claude Code for your team's needs
 
-### Next Steps
+## 🔜 Next Steps
+
+In [Lab 8 - Parallel Agents and Multi-Sessions](Lab-8-Parallel-Agents-Multi-Sessions.md), you'll learn:
+- Launch and manage multiple Claude sessions simultaneously
+- Use cross-session messaging to coordinate work
+- Master session naming and discovery
+- Apply best practices for multi-session coordination
+
+---
+
+#### You have successfully completed Lab 7! Click [Next Lab →](Lab-8-Parallel-Agents-Multi-Sessions.md) to continue.
+
+---
+
+## 📝 Continue Learning
 
 **Apply your skills:**
 - Use Claude Code in your daily work
@@ -624,7 +638,7 @@ Over these labs, you've learned:
 - Build custom integrations for your workflow
 - Contribute to the community
 
-**Continue learning:**
+**Additional resources:**
 - [Claude Academy](https://academy.claude.com/)
 - [Claude Code Blog](https://claude.com/blog)
 - [API Documentation](https://docs.anthropic.com/)
@@ -634,16 +648,3 @@ Over these labs, you've learned:
 - Follow [@AnthropicAI](https://twitter.com/AnthropicAI)
 - Subscribe to the Anthropic newsletter
 - Check the docs for new features
-
-## 📝 Feedback
-
-We'd love to hear about your experience:
-- What worked well?
-- What was challenging?
-- What would you like to see in future labs?
-
-Share your feedback and help make this lab better for others!
-
----
-
-#### 🎉 You have successfully completed the Claude Code Hands-On Lab! Happy coding with Claude!
