@@ -206,6 +206,38 @@ Before we start, let's understand when to use each tool:
 
 **Rule of Thumb**: Always prefer Edit for existing files, Write for new files.
 
+### Permission Modes and Allow Rules
+
+Permission modes control how Claude Code handles actions that need approval:
+
+- **Manual (`default`)** asks before actions such as file edits and shell commands; read-only actions in the working directory are generally allowed.
+- **Accept edits (`acceptEdits`)** allows file edits and common file operations in the working directory, so review the diff afterward.
+- **Plan (`plan`)** lets Claude explore and propose a plan without editing source files until you approve it.
+- **Auto (`auto`)** uses a background safety classifier to review actions instead of asking about every routine action.
+- **Don't ask (`dontAsk`)** denies actions that would otherwise prompt, unless a rule has already allowed them.
+- **Bypass permissions (`bypassPermissions`)** skips most permission checks; use it only in an isolated container or VM.
+
+In the CLI, press `Shift+Tab` to cycle through available modes. In VS Code, use the permission mode indicator. See the [permission modes guide](https://code.claude.com/docs/en/permission-modes#choose-a-permission-mode) for details.
+
+Allow rules are separate from modes: they pre-approve specific tools or actions. Store them under `permissions.allow` in a Claude Code settings file. For example, this allows the exact `npm test` command:
+
+```json
+{
+   "permissions": {
+      "allow": [
+         "Bash(npm test)"
+      ]
+   }
+}
+```
+
+Choose the file based on who should receive the rule:
+- `~/.claude/settings.json` applies to your projects on this machine (`%USERPROFILE%\\.claude\\settings.json` on Windows).
+- `.claude/settings.json` applies to the project; commit it to share the rule with teammates.
+- `.claude/settings.local.json` is for your project-specific personal rules and should not be committed. Claude Code saves many "Yes, and don't ask again" approvals here.
+
+Rules from different settings files can combine. A matching `deny` rule blocks an action, and a matching `ask` rule still prompts, even if an `allow` rule also matches.
+
 ## 📝 Step 2: Your First Code Edit
 
 Let's start with a simple example to understand the Edit workflow.

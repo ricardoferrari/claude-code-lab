@@ -15,16 +15,18 @@ This hands-on lab is designed to give developers practical experience using **Cl
 
 ## 🚀 Lab Structure
 
-The lab consists of 6 progressive exercises, each building on the previous one:
+The lab consists of 8 progressive exercises, each building on the previous one:
 
 | Lab | Title | Duration | Focus |
 |-----|-------|----------|-------|
 | [Lab 1](Instructions/Labs/Lab-1-Getting-Started.md) | Getting Started with Claude Code | 15 min | Installation, setup, and first session |
-| [Lab 2](Instructions/Labs/Lab-2-Exploring-Codebases.md) | Exploring Codebases | 30 min | Code navigation, understanding projects |
+| [Lab 2](Instructions/Labs/Lab-2-Exploring-Codebases.md) | Exploring Codebases with Claude Code | 30 min | Code navigation, understanding projects |
 | [Lab 3](Instructions/Labs/Lab-3-Code-Editing.md) | Code Editing and Testing | 30 min | Writing/editing code, generating tests |
-| [Lab 4](Instructions/Labs/Lab-4-Working-With-Agents.md) | Working with Agents | 30 min | Subagents, parallel execution |
-| [Lab 5](Instructions/Labs/Lab-5-MCP-Integration.md) | MCP Integration | 30 min | Connecting external tools and data |
-| [Lab 6](Instructions/Labs/Lab-6-Customization.md) | Customizing Claude Code | 30 min | Instructions, skills, hooks, memory |
+| [Lab 4](Instructions/Labs/Lab-4-Context-Windows-and-Session-Management.md) | Context Windows and Session Management | 25 min | Context windows, instructions, and session control |
+| [Lab 5](Instructions/Labs/Lab-5-Working-With-Agents.md) | Working with Agents | 30 min | Subagents, delegation, and parallel execution |
+| [Lab 6](Instructions/Labs/Lab-6-MCP-Integration.md) | MCP Integration | 30 min | Connecting external tools and data |
+| [Lab 7](Instructions/Labs/Lab-7-Customization.md) | Customizing Claude Code | 30 min | Instructions, skills, hooks, and memory |
+| [Lab 8](Instructions/Labs/Lab-8-Parallel-Agents-Multi-Sessions.md) | Parallel Agents and Multi-Sessions | 40 min | Coordinating parallel Claude sessions |
 
 **Total Duration:** ~4 hours (includes breaks and exploration time)
 
