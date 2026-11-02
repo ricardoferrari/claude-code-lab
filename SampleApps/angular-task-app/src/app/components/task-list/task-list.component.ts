@@ -36,11 +36,7 @@ export class TaskListComponent implements OnInit {
         this.tasks = tasks;
         this.loading = false;
       },
-      error: (err) => {
-        this.error = 'Failed to load tasks';
-        this.loading = false;
-        console.error('Error loading tasks:', err);
-      }
+      error: (err) => this.handleError('Failed to load tasks', err, true)
     });
   }
 
@@ -53,12 +49,17 @@ export class TaskListComponent implements OnInit {
         next: () => {
           this.tasks = this.tasks.filter(task => task.id !== id);
         },
-        error: (err) => {
-          this.error = 'Failed to delete task';
-          console.error('Error deleting task:', err);
-        }
+        error: (err) => this.handleError('Failed to delete task', err)
       });
     }
+  }
+
+  private handleError(message: string, error: any, stopLoading = false): void {
+    this.error = message;
+    if (stopLoading) {
+      this.loading = false;
+    }
+    console.error(`${message}:`, error);
   }
 
   /**
